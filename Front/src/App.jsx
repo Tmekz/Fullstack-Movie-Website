@@ -1,9 +1,20 @@
 import React from "react";
-import styles from "./constants/Constants";
+import { Route, Routes } from "react-router-dom";
+import { Home, Login, Signup, Profile } from "./pages";
+import { Navbar } from "./components";
 
 const App = () => {
   return (
-    <div className="bg-black min-h-screen text-white text-3xl">hessllo</div>
+    <div className="p-4 md:px-12  ">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </div>
   );
 };
 
