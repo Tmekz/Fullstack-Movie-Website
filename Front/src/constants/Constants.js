@@ -6,7 +6,7 @@ export const linksNavbar = [
   },
   {
     name: "Sign up",
-    direction: "/sign up",
+    direction: "/signup",
     id: crypto.randomUUID(),
   },
 ];
