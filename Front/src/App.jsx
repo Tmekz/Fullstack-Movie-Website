@@ -5,7 +5,7 @@ import { Navbar } from "./components";
 
 const App = () => {
   return (
-    <div className="p-4 md:px-12 min-w-[360px]">
+    <div className="min-w-[360px]">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

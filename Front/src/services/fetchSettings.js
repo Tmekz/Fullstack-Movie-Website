@@ -4,6 +4,7 @@ const baseURL = import.meta.env.VITE_BASE_URL;
 
 // endpoints from TMDB API
 const endpoints = {
+  originalIMG: "https://image.tmdb.org/t/p/original/",
   popular: `${baseURL}/movie/popular?api_key=${myKey}`,
   topRated: `${baseURL}/movie/top_rated?api_key=${myKey}`,
   trending: `${baseURL}/movie/popular?api_key=${myKey}&language=en-US&page=2`,
