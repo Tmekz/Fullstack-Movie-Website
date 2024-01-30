@@ -49,35 +49,39 @@ const Slider = () => {
 
   return (
     <>
+      {/* intermediate layer with opacity  */}
+      <div className="absolute  h-[80vh] w-full bg-black opacity-30"></div>
       {/* div with main picture */}
       {movie && (
-        <div className=" h-[100vh] ">
+        <div className=" h-[80vh] ">
           <div className=" h-full">
             <img
               src={`${getImageUrl(backdrop_path, "original")}`}
               alt={title}
-              className="aspect-video h-full max-h-screen  w-full object-cover"
+              className="aspect-video h-full max-h-screen w-full  object-cover object-top"
             />
             <button
               onClick={() => toggleImage(-1)}
-              className="navigation-button prev-button absolute left-[5vw]  top-[35%] flex
-              h-12 w-12 -translate-y-[30%] cursor-pointer items-center justify-center rounded-full border-2 bg-transparent hover:bg-[#4e4e4e56] md:top-[50%] md:-translate-y-[50%]"
+              className="absolute bottom-[20%] left-[30vw] flex h-auto -translate-y-[20%]  cursor-pointer items-center justify-center bg-transparent p-2 hover:bg-[#4e4e4e56]"
             >
               <img
                 src={leftChevron}
-                className="w-4"
+                className="w-8 md:w-14  "
                 alt="left arrow previous "
               />
             </button>
             <button
               onClick={() => toggleImage(+1)}
-              className="navigation-button prev-button absolute right-[5vw]  top-[35%] flex
-              h-12 w-12 -translate-y-[30%] cursor-pointer items-center justify-center rounded-full border-2 bg-transparent hover:bg-[#4e4e4e56] md:top-[50%] md:-translate-y-[50%]"
+              className="absolute bottom-[20%] right-[30vw] flex h-auto -translate-y-[20%]  cursor-pointer items-center justify-center bg-transparent p-2 hover:bg-[#4e4e4e56] "
             >
-              <img src={rightChevron} className="w-4" alt="rigth arrow next " />
+              <img
+                src={rightChevron}
+                className="w-8 md:w-14 "
+                alt="rigth arrow next "
+              />
             </button>
           </div>
-          <div className="ss:w-4/6 absolute bottom-[10vh] left-[5vw] w-5/6 space-y-2 sm:w-[50%] md:left-[4%]">
+          <div className="ss:w-4/6 absolute bottom-[30vh] left-[5vw] w-5/6 space-y-2 sm:w-[50%] md:left-[4%]">
             <h2 className="text-4xl font-bold md:text-6xl">{title}</h2>
             <p
               className={` line-clamp-2 text-xs hover:line-clamp-none  md:text-wrap`}
