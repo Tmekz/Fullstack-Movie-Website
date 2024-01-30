@@ -16,5 +16,6 @@
 body {
   background-color: black;
   color: white;
+  min-width: 360px;
   /* font-size: 0.85vw; */
 }

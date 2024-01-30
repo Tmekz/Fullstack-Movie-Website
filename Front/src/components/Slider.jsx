@@ -50,11 +50,11 @@ const Slider = () => {
   return (
     <>
       {/* intermediate layer with opacity  */}
-      <div className="absolute  h-[80vh] w-full bg-black opacity-30"></div>
+      <div className="absolute  h-[80vh] w-full bg-black opacity-30 "></div>
       {/* div with main picture */}
       {movie && (
         <div className=" h-[80vh] ">
-          <div className=" h-full">
+          <div className=" h-full ">
             <img
               src={`${getImageUrl(backdrop_path, "original")}`}
               alt={title}
@@ -81,7 +81,7 @@ const Slider = () => {
               />
             </button>
           </div>
-          <div className="ss:w-4/6 absolute bottom-[30vh] left-[5vw] w-5/6 space-y-2 sm:w-[50%] md:left-[4%]">
+          <div className="ss:w-4/6 absolute bottom-[30vh] left-[5vw] w-5/6 min-w-[360px] space-y-2 sm:w-[50%]  md:left-[4%]">
             <h2 className="text-4xl font-bold md:text-6xl">{title}</h2>
             <p
               className={` line-clamp-2 text-xs hover:line-clamp-none  md:text-wrap`}

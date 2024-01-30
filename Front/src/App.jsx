@@ -5,7 +5,7 @@ import { Navbar } from "./components";
 
 const App = () => {
   return (
-    <div className="min-w-[360px]">
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -14,7 +14,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Home />} />
       </Routes>
-    </div>
+    </>
   );
 };
 

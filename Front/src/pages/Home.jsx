@@ -6,7 +6,7 @@ import Slider from "../components/Slider";
 
 const Home = () => {
   return (
-    <div className="h-full w-full  ">
+    <div className="h-full w-full min-w-[360px]  ">
       <Slider />
       <MovieRow title={"upcoming"} url={endpoints.upcoming} />
       <MovieRow title={"trending"} url={endpoints.trending} />
