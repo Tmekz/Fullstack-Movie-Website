@@ -46,36 +46,12 @@ const Slider = () => {
   //   return () => clearInterval(intervalID);
   // }, []);
 
-  // Gestion des événements tactiles
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e) => {
-    touchEndX.current = e.changedTouches[0].clientX;
-    handleSwipe();
-  };
-
-  const handleSwipe = () => {
-    const swipeDistance = touchStartX.current - touchEndX.current;
-    // Ajustez la distance de glissement selon votre besoin
-    if (swipeDistance > 50) {
-      toggleImage(+1); // Swipe vers la gauche
-    } else if (swipeDistance < -50) {
-      toggleImage(-1); // Swipe vers la droite
-    }
-  };
   return (
     <>
       {/* div with main picture */}
       {movie && (
         <div
-          className="h-[100vh] "
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
+          className=" h-[100vh] "
         >
           <div className=" h-full">
             <img
@@ -100,7 +76,7 @@ const Slider = () => {
               <img src={rightChevron} className="w-4" alt="rigth arrow next " />
             </button>
           </div>
-          <div className="sticky  bottom-[10%] left-[5%]  w-5/6 space-y-2 sm:w-[40%] md:left-[4%]">
+          <div className="absolute  bottom-[10%] left-[5%]  w-5/6 space-y-2 sm:w-[40%] md:left-[4%]">
             <h2 className="text-4xl font-bold md:text-6xl">{title}</h2>
             <p
               className={` line-clamp-2 text-xs hover:line-clamp-none  md:text-wrap`}
