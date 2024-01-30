@@ -13,8 +13,9 @@ export default {
       sm: "768px",
       md: "1060px",
       lg: "1200px",
-      xl: "1700px", 
+      xl: "1700px",
     },
   },
-  plugins: [],
+  // to add a scroll bar hide option with tailwind
+  plugins: [require("tailwind-scrollbar-hide")],
 };

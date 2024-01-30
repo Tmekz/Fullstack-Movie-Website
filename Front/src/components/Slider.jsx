@@ -16,9 +16,10 @@ const Slider = () => {
     // fetch data + select a random movie on the 20 results
     axios.get(endpoints.popular).then((response) => {
       const movies = response.data.results;
-      const randomMovie = movies[Math.floor(Math.random() * movies.length)];
-      //   const randomMovie = movies[sliderIndex];
-      setMovie(randomMovie);
+      //   random movie
+      //   const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+      //   setMovie(randomMovie);
+      setMovie(movies[sliderIndex]);
     });
 
     // add conditions if no data etc
@@ -50,9 +51,7 @@ const Slider = () => {
     <>
       {/* div with main picture */}
       {movie && (
-        <div
-          className=" h-[100vh] "
-        >
+        <div className=" h-[100vh] ">
           <div className=" h-full">
             <img
               src={`${getImageUrl(backdrop_path, "original")}`}
@@ -61,7 +60,8 @@ const Slider = () => {
             />
             <button
               onClick={() => toggleImage(-1)}
-              className="navigation-button prev-button absolute left-[5vw] top-2/4 flex h-12 w-12 -translate-y-2/4 cursor-pointer items-center justify-center rounded-full border-2 bg-transparent hover:bg-[#4e4e4e56]"
+              className="navigation-button prev-button absolute left-[5vw]  top-[35%] flex
+              h-12 w-12 -translate-y-[30%] cursor-pointer items-center justify-center rounded-full border-2 bg-transparent hover:bg-[#4e4e4e56] md:top-[50%] md:-translate-y-[50%]"
             >
               <img
                 src={leftChevron}
@@ -71,12 +71,13 @@ const Slider = () => {
             </button>
             <button
               onClick={() => toggleImage(+1)}
-              className="navigation-button prev-button absolute right-[5vw] top-2/4 flex h-12 w-12 -translate-y-2/4 cursor-pointer items-center justify-center rounded-full border-2 bg-transparent"
+              className="navigation-button prev-button absolute right-[5vw]  top-[35%] flex
+              h-12 w-12 -translate-y-[30%] cursor-pointer items-center justify-center rounded-full border-2 bg-transparent hover:bg-[#4e4e4e56] md:top-[50%] md:-translate-y-[50%]"
             >
               <img src={rightChevron} className="w-4" alt="rigth arrow next " />
             </button>
           </div>
-          <div className="absolute  bottom-[10%] left-[5%]  w-5/6 space-y-2 sm:w-[40%] md:left-[4%]">
+          <div className="ss:w-4/6 absolute bottom-[10vh] left-[5vw] w-5/6 space-y-2 sm:w-[50%] md:left-[4%]">
             <h2 className="text-4xl font-bold md:text-6xl">{title}</h2>
             <p
               className={` line-clamp-2 text-xs hover:line-clamp-none  md:text-wrap`}

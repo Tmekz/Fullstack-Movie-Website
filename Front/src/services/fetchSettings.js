@@ -14,7 +14,7 @@ const endpoints = {
   upcoming: `${baseURL}/movie/upcoming?api_key=${myKey}`,
 };
 
-export function getImageUrl(path, size, kaka) {
+export function getImageUrl(path, size) {
   return `https://image.tmdb.org/t/p/original/${path}/${size}`;
 }
 
