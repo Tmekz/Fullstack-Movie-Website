@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import netflixBackground from "../assets/pictures/Netflix Background.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
 const Signup = () => {
   // state to keep in memory
@@ -8,9 +9,19 @@ const Signup = () => {
   const [rememberLogin, setRememberLogin] = useState(true);
   const [password, setPassword] = useState("");
 
+  const { user, signUp } = UserAuth();
+  const navigate = useNavigate();
+
   // handle submit on click
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      await signUp(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -45,7 +56,10 @@ const Signup = () => {
               />
             </form>
             <footer className="">
-              <button className="mt-4 w-full rounded bg-red-600 py-2 font-bold">
+              <button
+                onClick={handleFormSubmit}
+                className="mt-4 w-full rounded bg-red-600 py-2 font-bold"
+              >
                 {" "}
                 Sign In
               </button>

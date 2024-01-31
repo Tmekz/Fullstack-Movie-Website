@@ -1,45 +1,69 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { linksNavbar } from "../constants/Constants";
 import logo from "../assets/logo/TMK-LOGO-WHITE.svg";
+import { UserAuth } from "../context/AuthContext";
 
 const Navbar = () => {
+  const { user, logOut } = UserAuth();
+  const navigate = useNavigate();
+
   return (
-    <div className="absolute w-full px-4 md:px-12 py-6 flex items-center justify-between z-50 min-w-[360px]">
+    <div className="absolute z-50 flex w-full min-w-[360px] items-center justify-between px-4 py-6 md:px-12">
       <Link to={"/"}>
-        <img src={logo} className="h-8 md:h-14" alt="TMK-DEV Logo" />
+        <img src={logo} className="h-8 md:h-10" alt="TMK-DEV Logo" />
       </Link>
-      <div className="">
-        {linksNavbar.map((button, index) => (
-          <Link
-            className="hover:brightness-75 "
-            key={button.id}
-            to={button.direction}
-          >
-            <button
-              className={`capitalize text-lg md:text-2xl py-2 px-4  ${
-                index === linksNavbar.length - 1
-                  ? " , rounded , bg-red-600"
-                  : ""
-              }  `}
+
+      {user?.email ? (
+        <div className="">
+          {linksNavbar.map((button, index) => (
+            <Link
+              className="hover:brightness-75 "
+              key={button.id}
+              to={button.directionLoged}
             >
-              {button.name}
-            </button>
-          </Link>
-        ))}
-        {/* <Link to={"/login"}>
-          {" "}
-          <button className="capitalize pr-4">login</button>
-        </Link>
-        <Link to={"/signup"}>
-          {" "}
-          <button className="capitalize px-6 py-2 rounded cursor-pointer bg-blue-600">
-            sign up
-          </button>
-        </Link> */}
-      </div>
+              <button
+                className={`px-4 py-2 text-lg capitalize md:text-2xl  ${
+                  index === linksNavbar.length - 2 ? "" : ""
+                }  `}
+              >
+                {button.nameLoged}
+              </button>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <div className="">
+          {linksNavbar.map((button, index) => (
+            <Link
+              className="hover:brightness-75 "
+              key={button.id}
+              to={button.direction}
+            >
+              <button
+                className={`px-4 py-2 text-lg capitalize md:text-2xl  ${
+                  index === linksNavbar.length - 1 ? "  " : ""
+                }  `}
+              >
+                {button.name}
+              </button>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
 
 export default Navbar;
+
+{/* <Link to={"/login"}>
+  {" "}
+  <button className="capitalize pr-4">login</button>
+</Link>
+<Link to={"/signup"}>
+  {" "}
+  <button className="capitalize px-6 py-2 rounded cursor-pointer bg-blue-600">
+    sign up
+  </button>
+</Link> */}
