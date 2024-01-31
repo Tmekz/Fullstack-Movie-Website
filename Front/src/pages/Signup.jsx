@@ -8,7 +8,10 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [rememberLogin, setRememberLogin] = useState(true);
   const [password, setPassword] = useState("");
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
 
+  // Used by Firebase
   const { user, signUp } = UserAuth();
   const navigate = useNavigate();
 
@@ -35,7 +38,7 @@ const Signup = () => {
         <div className="fixed z-20 mt-20 h-full w-full bg-black/70  py-0 sm:mt-0 sm:h-[70vh] sm:w-[50vw] sm:max-w-[500px]">
           <div className="h-full w-full min-w-[360px] flex-col px-[30px] py-[68px]">
             <header>
-              <h1 className="mb-10 text-4xl">Sign In</h1>
+              <h1 className="mb-10 text-4xl">Sign Up</h1>
             </header>
             <form className="flex w-full flex-col space-y-4 rounded" action="">
               <input
@@ -44,16 +47,30 @@ const Signup = () => {
                 autoComplete="email"
                 placeholder="Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setIsEmailInvalid(!/\S+@\S+\.\S+/.test(e.target.value));
+                }}
               />
+              {isEmailInvalid && (
+                <p className="mt-2 text-red-500">Please enter a valid email.</p>
+              )}
               <input
                 className="rounded bg-gray-900/80 p-3"
                 type="password"
                 autoComplete="current-password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setIsPasswordInvalid(e.target.value.length < 6);
+                }}
               />
+              {isPasswordInvalid && (
+                <p className="mt-2 text-red-500">
+                  Password must contain at least 6 characters
+                </p>
+              )}
             </form>
             <footer className="">
               <button
@@ -78,7 +95,7 @@ const Signup = () => {
             </div>
             <p className="my-4">
               <span className="mr-2 text-gray-600">
-                Already subscribed to Netflix ?
+                Already subscribed ?
               </span>
               <Link to={"/login"}>Login</Link>
             </p>

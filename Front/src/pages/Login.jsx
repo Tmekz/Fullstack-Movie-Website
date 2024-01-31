@@ -1,16 +1,30 @@
 import React, { useState } from "react";
 import netflixBackground from "../assets/pictures/Netflix Background.webp";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
 
 const Login = () => {
   // state to keep in memory
   const [email, setEmail] = useState("");
   const [rememberLogin, setRememberLogin] = useState(true);
   const [password, setPassword] = useState("");
+  const [isEmailInvalid, setIsEmailInvalid] = useState(false);
+  const [isPasswordInvalid, setIsPasswordInvalid] = useState(false);
+
+  // for fireBase
+  const { user, logIn } = UserAuth();
+  const navigate = useNavigate();
 
   // handle submit on click
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      await logIn(email, password);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -33,19 +47,36 @@ const Login = () => {
                 autoComplete="email"
                 placeholder="Email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setIsEmailInvalid(!/\S+@\S+\.\S+/.test(e.target.value));
+                }}
+              />{" "}
+              {isEmailInvalid && (
+                <p className="mt-2 text-red-500">Please enter a valid email.</p>
+              )}
               <input
                 className="rounded bg-gray-900/80 p-3"
                 type="password"
                 autoComplete="current-password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setIsPasswordInvalid(e.target.value.length < 6);
+                }}
               />
+              {isPasswordInvalid && (
+                <p className="mt-2 text-red-500">
+                  Password must contain at least 6 characters
+                </p>
+              )}
             </form>
             <footer className="">
-              <button className="mt-4 w-full rounded bg-red-600 py-2 font-bold">
+              <button
+                onClick={handleFormSubmit}
+                className="mt-4 w-full rounded bg-red-600 py-2 font-bold"
+              >
                 {" "}
                 Login
               </button>
@@ -63,7 +94,7 @@ const Login = () => {
               <p>Need help ?</p>
             </div>
             <p className="my-4">
-              <span className="mr-2 text-gray-600">New to Netflix ?</span>
+              <span className="mr-2 text-gray-600">Not having an account yet ?</span>
               <Link to={"/login"}>Sign up</Link>
             </p>
           </div>

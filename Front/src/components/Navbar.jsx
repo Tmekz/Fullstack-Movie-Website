@@ -8,6 +8,16 @@ const Navbar = () => {
   const { user, logOut } = UserAuth();
   const navigate = useNavigate();
 
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      navigate("/");
+      console.log("logged out successfully");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="absolute z-50 flex w-full min-w-[360px] items-center justify-between px-4 py-6 md:px-12">
       <Link to={"/"}>
@@ -23,8 +33,9 @@ const Navbar = () => {
               to={button.directionLoged}
             >
               <button
+                onClick={index === 0 ? handleLogout : undefined}
                 className={`px-4 py-2 text-lg capitalize md:text-2xl  ${
-                  index === linksNavbar.length - 2 ? "" : ""
+                  index === linksNavbar.length - 1 ? "" : ""
                 }  `}
               >
                 {button.nameLoged}
@@ -57,7 +68,8 @@ const Navbar = () => {
 
 export default Navbar;
 
-{/* <Link to={"/login"}>
+{
+  /* <Link to={"/login"}>
   {" "}
   <button className="capitalize pr-4">login</button>
 </Link>
@@ -66,4 +78,5 @@ export default Navbar;
   <button className="capitalize px-6 py-2 rounded cursor-pointer bg-blue-600">
     sign up
   </button>
-</Link> */}
+</Link> */
+}
