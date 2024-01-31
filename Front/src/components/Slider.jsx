@@ -42,10 +42,10 @@ const Slider = () => {
   };
 
   // AUTOMATIQUE SLIDER
-  // useEffect(() => {
-  //   const intervalID = setInterval(() => toggleImage(+1), 5000);
-  //   return () => clearInterval(intervalID);
-  // }, []);
+  useEffect(() => {
+    const intervalID = setInterval(() => toggleImage(+1), 5000);
+    return () => clearInterval(intervalID);
+  }, []);
 
   return (
     <>
@@ -84,7 +84,7 @@ const Slider = () => {
           <div className="ss:w-4/6 absolute bottom-[30vh] left-[5vw] w-5/6 min-w-[360px] space-y-2 sm:w-[50%]  md:left-[4%]">
             <h2 className="text-4xl font-bold md:text-6xl">{title}</h2>
             <p
-              className={` line-clamp-2 text-xs hover:line-clamp-none  md:text-wrap`}
+              className={` line-clamp-2 text-xs hover:line-clamp-none md:text-wrap xl:line-clamp-6  xl:text-lg`}
             >
               {overview}
             </p>
