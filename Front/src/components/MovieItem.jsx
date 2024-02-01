@@ -2,12 +2,33 @@ import React, { useState } from "react";
 import { getImageUrl } from "../services/fetchSettings";
 
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../services/firebase";
+import { UserAuth } from "../context/AuthContext";
 
 const MovieItem = ({ movie }) => {
   // state for like
   const [like, setLike] = useState(false);
   // destructuring
   const { title, backdrop_path, poster_path } = movie;
+
+  // import user from 
+  const {user} = UserAuth()
+
+  // add to favorite show
+  const addToFavoriteShow = async () => {
+    const userEmail = user?.email;
+
+    if (userEmail) {
+      const userDoc = doc(db, "users", userEmail);
+      setLike(!like);
+      await updateDoc(userDoc, {
+        favShows: arrayUnion({ ...movie }),
+      });
+    } else {
+      alert("You must be logged to save a movie");
+    }
+  };
 
   return (
     <div className="relative m-2 inline-block h-60 w-[160px] cursor-pointer overflow-hidden rounded-lg sm:w-[200px] md:h-[200px] md:w-[240px] lg:w-[400px]">
@@ -21,16 +42,16 @@ const MovieItem = ({ movie }) => {
         <p className="0 flex h-full w-full items-center justify-center whitespace-normal text-center text-xs font-bold text-white md:text-lg ">
           {title}
         </p>
-        <p>
+        <p onClick={addToFavoriteShow}>
           {like ? (
             <FaHeart
               size={30}
-              className="absolute left-2 top-2  text-gray-300"
+              className="absolute left-2 top-2  text-red-600 hover:brightness-150 "
             />
           ) : (
             <FaRegHeart
               size={30}
-              className="absolute left-2 top-2 text-gray-300"
+              className="absolute left-2 top-2 hover:text-red-600"
             />
           )}
         </p>
