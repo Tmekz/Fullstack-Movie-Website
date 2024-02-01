@@ -4,7 +4,7 @@ import MovieItem from "./MovieItem";
 import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { doc } from "firebase/firestore";
 
-const MovieRow = ({ title, url, favoriteData }) => {
+const MovieRow = ({ title, url, favoriteData, likedYet }) => {
   const [movies, setMovies] = useState([]);
   const sliderID = crypto.randomUUID();
 
@@ -12,7 +12,6 @@ const MovieRow = ({ title, url, favoriteData }) => {
     if (url) {
       axios.get(url).then((response) => setMovies(response.data.results));
     } else if (url === undefined) {
-    
       setMovies(favoriteData);
     }
   }, [url, favoriteData]);
@@ -39,7 +38,7 @@ const MovieRow = ({ title, url, favoriteData }) => {
           className="scrollbar-hide h-full w-full select-none overflow-x-scroll whitespace-nowrap"
         >
           {movies.map((movie) => (
-            <MovieItem movie={movie} key={movie.id} />
+            <MovieItem movie={movie} key={movie.id} likedYet={likedYet} />
           ))}
         </div>
         <MdChevronRight

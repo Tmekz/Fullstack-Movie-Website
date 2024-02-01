@@ -18,8 +18,6 @@ const Profile = () => {
     }
   }, [user?.email]);
 
-  
-
   return (
     <div>
       <div className="">
@@ -41,6 +39,7 @@ const Profile = () => {
         title={"My favorite list"}
         url={undefined}
         favoriteData={movies}
+        likedYet={true}
       />
     </div>
   );
