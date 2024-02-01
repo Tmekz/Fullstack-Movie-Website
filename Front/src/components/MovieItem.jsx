@@ -5,6 +5,7 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { UserAuth } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const MovieItem = ({ movie, likedYet }) => {
   // state for like
@@ -18,7 +19,6 @@ const MovieItem = ({ movie, likedYet }) => {
   // remove from liked
   const handleLikeDislike = async () => {
     const userEmail = user?.email;
-    
 
     if (userEmail) {
       const userDoc = doc(db, "users", userEmail);
@@ -49,11 +49,13 @@ const MovieItem = ({ movie, likedYet }) => {
         <p className="flex h-full w-full items-center justify-center whitespace-normal text-center text-xs font-bold text-white md:text-lg ">
           {title}
         </p>
-        <p className="absolute right-2 top-2">
-          <IoMdInformationCircleOutline
-            size={30}
-          ></IoMdInformationCircleOutline>
-        </p>
+        <Link to={`/movie/${movie.id}`}>
+          <p className="absolute right-2 top-2">
+            <IoMdInformationCircleOutline
+              size={30}
+            ></IoMdInformationCircleOutline>
+          </p>
+        </Link>
         <p onClick={handleLikeDislike}>
           {like ? (
             <FaHeart

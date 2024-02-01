@@ -3,6 +3,7 @@ import axios from "axios";
 import endpoints, { getImageUrl } from "../services/fetchSettings";
 import leftChevron from "../assets/Icons/left-arrow.svg";
 import rightChevron from "../assets/Icons/right-arrow.svg";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
   // initilization index 0
@@ -42,10 +43,15 @@ const Slider = () => {
   };
 
   // AUTOMATIQUE SLIDER
-  // useEffect(() => {
-  //   const intervalID = setInterval(() => toggleImage(+1), 7000);
-  //   return () => clearInterval(intervalID);
-  // }, []);
+  useEffect(() => {
+    const intervalID = setInterval(() => toggleImage(+1), 7000);
+    return () => clearInterval(intervalID);
+  }, []);
+
+  const handleYoutubePlay = () => {
+    const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(`official trailer ${title}`)}`;
+    window.open(url, "_blank");
+  };
 
   return (
     <>
@@ -90,12 +96,18 @@ const Slider = () => {
             </p>
 
             <div className="space-x-4">
-              <button className="rounded bg-gray-300 px-6 py-2  text-xl text-black hover:brightness-150 ">
+              <button
+                onClick={handleYoutubePlay}
+                className="rounded bg-gray-300 px-6 py-2  text-xl text-black hover:brightness-150 "
+              >
                 Play
               </button>
-              <button className="rounded bg-gray-500 px-6 py-2  text-xl opacity-80 hover:brightness-150">
-                More
-              </button>
+
+              <Link to={`/movie/${movie.id}`}>
+                <button className="rounded bg-gray-500 px-6 py-2  text-xl opacity-80 hover:brightness-150">
+                  More
+                </button>
+              </Link>
             </div>
             <p className="text-sm text-gray-400 opacity-75">{release_date}</p>
           </div>

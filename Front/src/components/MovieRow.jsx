@@ -29,7 +29,7 @@ const MovieRow = ({ title, url, favoriteData, likedYet }) => {
       <h2 className="p-4 capitalize md:text-xl ">{title}</h2>
       <div className="group relative flex items-center">
         <MdChevronLeft
-          onClick={() => slide(-500)}
+          onClick={() => slide(-700)}
           size={40}
           className="absolute left-5 z-10 hidden cursor-pointer rounded-full bg-white text-gray-700 opacity-80 md:group-hover:block"
         />
@@ -42,7 +42,7 @@ const MovieRow = ({ title, url, favoriteData, likedYet }) => {
           ))}
         </div>
         <MdChevronRight
-          onClick={() => slide(500)}
+          onClick={() => slide(700)}
           size={40}
           className="absolute right-5 z-10 hidden cursor-pointer rounded-full bg-white text-gray-700 opacity-80 md:group-hover:block"
         />

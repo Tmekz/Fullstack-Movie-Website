@@ -22,11 +22,11 @@ const Profile = () => {
     <div>
       <div className="">
         <img
-          className="h-[70vh] w-full object-cover"
+          className="h-[60vh] w-full object-cover"
           src={netflixBackground}
           alt="netflix bg"
         />
-        <div className="fixed left-0 top-0 h-[70vh] w-full bg-black/60"></div>
+        <div className="fixed left-0 top-0 h-[60vh] w-full bg-black/60"></div>
         <div className="absolute top-[25%] p-4 md:p-8">
           {" "}
           <h1 className="text-5xl">My profile</h1>
