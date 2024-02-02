@@ -38,7 +38,10 @@ const MovieItem = ({ movie, likedYet }) => {
 
   return (
     <div className="relative m-2 inline-block h-60 w-[160px] cursor-pointer overflow-hidden rounded-lg sm:w-[200px] md:h-[200px] md:w-[240px] lg:w-[400px]">
-      <Link to={`/movie/${movie.id}`}>
+      <Link
+        to={`/movie/${movie.id}`}
+        aria-label={`Voir les détails du film : ${title}`}
+      >
         <img
           className="block h-full w-full object-cover object-top"
           src={getImageUrl(backdrop_path ?? poster_path, "w500")}
