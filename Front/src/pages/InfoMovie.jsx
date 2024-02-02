@@ -49,13 +49,13 @@ const InfoMovie = () => {
         <div className="flex flex-col justify-evenly bg-transparent px-5 md:w-[70%]">
           <div className="space-y-1 ">
             <Link to={`/home`}>
-              <div className="my-4 flex flex-row items-center space-x-4">
+              <div className="my-4 flex flex-row items-center space-x-1">
                 <img
                   src={leftChevron}
-                  className="w-6 md:w-8  "
+                  className="w-6 font-bold md:w-10  "
                   alt="left arrow previous "
                 />
-                <span className="uppercase">Return</span>
+                <span className="text-xl font-bold uppercase">Return</span>
               </div>
             </Link>
             <h1 className="text-4xl font-bold">{title}</h1>
