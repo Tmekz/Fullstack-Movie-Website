@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import endpoints, { getImageUrl } from "../services/fetchSettings";
 import axios from "axios";
 import { MdStarRate } from "react-icons/md";
+import leftChevron from "../assets/Icons/left-arrow.svg";
 
 const InfoMovie = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const InfoMovie = () => {
     vote_count,
     vote_average,
   } = movieDetails;
-  console.log(movieDetails);
+
   return (
     <div className="relative h-screen w-full min-w-[360px]  ">
       <div className="absolute  h-[100vh] w-full bg-black opacity-30 "></div>
@@ -47,6 +48,16 @@ const InfoMovie = () => {
         </div>
         <div className="flex flex-col justify-evenly bg-transparent px-5 md:w-[70%]">
           <div className="space-y-1 ">
+            <Link to={`/home`}>
+              <div className="my-4 flex flex-row items-center space-x-4">
+                <img
+                  src={leftChevron}
+                  className="w-6 md:w-8  "
+                  alt="left arrow previous "
+                />
+                <span className="uppercase">Return</span>
+              </div>
+            </Link>
             <h1 className="text-4xl font-bold">{title}</h1>
             <h2 className="text">" {tagline} "</h2>
             <div className="flex space-x-1">

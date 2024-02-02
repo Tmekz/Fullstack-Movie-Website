@@ -78,7 +78,7 @@ const Signup = () => {
                 className="mt-4 w-full rounded bg-red-600 py-2 font-bold"
               >
                 {" "}
-                Sign In
+                Sign Up
               </button>
             </footer>
             <div className="mt-4 flex items-center justify-between text-gray-600">
@@ -94,9 +94,7 @@ const Signup = () => {
               <p>Need help ?</p>
             </div>
             <p className="my-4">
-              <span className="mr-2 text-gray-600">
-                Already subscribed ?
-              </span>
+              <span className="mr-2 text-gray-600">Already subscribed ?</span>
               <Link to={"/login"}>Login</Link>
             </p>
           </div>

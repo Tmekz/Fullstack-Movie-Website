@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { getImageUrl } from "../services/fetchSettings";
-import { IoMdInformationCircleOutline } from "react-icons/io";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
@@ -39,37 +38,32 @@ const MovieItem = ({ movie, likedYet }) => {
 
   return (
     <div className="relative m-2 inline-block h-60 w-[160px] cursor-pointer overflow-hidden rounded-lg sm:w-[200px] md:h-[200px] md:w-[240px] lg:w-[400px]">
-      <img
-        className="block h-full w-full object-cover object-top"
-        src={getImageUrl(backdrop_path ?? poster_path, "w500")}
-        alt={title}
-      />
+      <Link to={`/movie/${movie.id}`}>
+        <img
+          className="block h-full w-full object-cover object-top"
+          src={getImageUrl(backdrop_path ?? poster_path, "w500")}
+          alt={title}
+        />
 
-      <div className="absolute left-0 top-0 h-full w-full bg-black/80 opacity-0 hover:opacity-100">
-        <p className="flex h-full w-full items-center justify-center whitespace-normal text-center text-xs font-bold text-white md:text-lg ">
-          {title}
-        </p>
-        <Link to={`/movie/${movie.id}`}>
-          <p className="absolute right-3 top-3">
-            <IoMdInformationCircleOutline
-              size={30}
-            ></IoMdInformationCircleOutline>
+        <div className="absolute left-0 top-0 h-full w-full bg-black/80 opacity-0 hover:opacity-100">
+          <p className="flex h-full w-full items-center justify-center whitespace-normal text-center text-xs font-bold text-white md:text-lg ">
+            {title}
           </p>
-        </Link>
-        <p onClick={handleLikeDislike}>
-          {like ? (
-            <FaHeart
-              size={30}
-              className="absolute left-3 top-3  text-red-600 hover:brightness-150 "
-            />
-          ) : (
-            <FaRegHeart
-              size={30}
-              className="absolute left-3 top-3 hover:text-red-600"
-            />
-          )}
-        </p>
-      </div>
+          <p onClick={handleLikeDislike}>
+            {like ? (
+              <FaHeart
+                size={30}
+                className="absolute left-3 top-3  text-red-600 hover:brightness-150 "
+              />
+            ) : (
+              <FaRegHeart
+                size={30}
+                className="absolute left-3 top-3 hover:text-red-600"
+              />
+            )}
+          </p>
+        </div>
+      </Link>
     </div>
   );
 };
