@@ -37,7 +37,7 @@ const InfoMovie = () => {
         />
       </div>
 
-      <div className="absolute left-5 md:top-[35%] z-10 mx-auto flex  h-[40vh]  w-[90vw] space-x-4 md:left-10 ">
+      <div className="absolute left-5 z-10 mx-auto flex h-[40vh] w-[90vw] space-x-4 md:left-10 md:top-[30%] ">
         <div className="hidden h-full w-[30%] md:block">
           <img
             src={`${getImageUrl(backdrop_path, "original")}`}
@@ -45,10 +45,10 @@ const InfoMovie = () => {
             className="h-full max-h-screen w-full object-cover object-top"
           />
         </div>
-        <div className="flex w-full flex-col justify-between bg-transparent px-5 md:w-[70%]">
-          <div className="h-full w-full space-y-1 ">
-            <h1 className="text-3xl">{title}</h1>
-            <h2 className="">{tagline}</h2>
+        <div className="flex flex-col justify-evenly bg-transparent px-5 md:w-[70%]">
+          <div className="space-y-1 ">
+            <h1 className="text-4xl font-bold">{title}</h1>
+            <h2 className="text">" {tagline} "</h2>
             <div className="flex space-x-1">
               <p>{vote_average}</p>
               <span className="text-yellow-300">
@@ -58,9 +58,8 @@ const InfoMovie = () => {
             </div>
             <p>Release date: {release_date}</p>
           </div>
-          <div className="flex w-full flex-col justify-end ">
+          <div className="flex  flex-col">
             <p className="mb-4 text-xl font-bold">Synopsis :</p>
-            <p className="">{overview}</p>
             <p className="">{overview}</p>
           </div>
         </div>
