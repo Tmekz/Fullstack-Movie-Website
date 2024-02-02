@@ -5,6 +5,7 @@ import { arrayRemove, arrayUnion, doc, updateDoc } from "firebase/firestore";
 import { db } from "../services/firebase";
 import { UserAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 const MovieItem = ({ movie, likedYet }) => {
   // state for like
@@ -38,35 +39,42 @@ const MovieItem = ({ movie, likedYet }) => {
 
   return (
     <div className="relative m-2 inline-block h-60 w-[160px] cursor-pointer overflow-hidden rounded-lg sm:w-[200px] md:h-[200px] md:w-[240px] lg:w-[400px]">
-      <Link
-        to={`/movie/${movie.id}`}
-        aria-label={`Voir les détails du film : ${title}`}
-      >
-        <img
-          className="block h-full w-full object-cover object-top"
-          src={getImageUrl(backdrop_path ?? poster_path, "w500")}
-          alt={title}
-        />
+      <img
+        className="block h-full w-full object-cover object-top"
+        src={getImageUrl(backdrop_path ?? poster_path, "w500")}
+        alt={title}
+      />
 
-        <div className="absolute left-0 top-0 h-full w-full bg-black/80 opacity-0 hover:opacity-100">
-          <p className="flex h-full w-full items-center justify-center whitespace-normal text-center text-xs font-bold text-white md:text-lg ">
+      <div className="absolute left-0 top-0 h-full w-full bg-black/80 opacity-0 hover:opacity-100">
+        <Link
+          to={`/movie/${movie.id}`}
+          aria-label={`Voir les détails du film : ${title}`}
+        >
+          <p className="flex h-full w-full items-center justify-center whitespace-normal text-center text-md font-bold text-white md:text-lg ">
             {title}
           </p>
-          <p onClick={handleLikeDislike}>
-            {like ? (
-              <FaHeart
-                size={30}
-                className="absolute left-3 top-3  text-red-600 hover:brightness-150 "
-              />
-            ) : (
-              <FaRegHeart
-                size={30}
-                className="absolute left-3 top-3 hover:text-red-600"
-              />
-            )}
+        </Link>
+        <p className="-z-10" onClick={handleLikeDislike}>
+          {like ? (
+            <FaHeart
+              size={40}
+              className="absolute left-3 top-3  text-red-600 hover:brightness-150 "
+            />
+          ) : (
+            <FaRegHeart
+              size={40}
+              className="absolute left-3 top-3 hover:text-red-600"
+            />
+          )}
+        </p>
+        <Link to={`/movie/${movie.id}`}>
+          <p className="absolute right-2 top-2">
+            <IoMdInformationCircleOutline
+              size={50}
+            ></IoMdInformationCircleOutline>
           </p>
-        </div>
-      </Link>
+        </Link>
+      </div>
     </div>
   );
 };

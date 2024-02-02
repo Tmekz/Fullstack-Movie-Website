@@ -32,7 +32,7 @@ export function AuthContextProvider({ children }) {
   }
   function logIn(email, password) {
     signInWithEmailAndPassword(auth, email, password);
-    console.log("Successfully logged up with " + email);
+    console.log("Successfully logged in with " + email);
   }
   function logOut(email, password) {
     signOut(auth, email, password);

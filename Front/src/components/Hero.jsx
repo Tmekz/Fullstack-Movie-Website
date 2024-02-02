@@ -43,10 +43,10 @@ const Hero = () => {
   };
 
   // AUTOMATIQUE SLIDER
-  // useEffect(() => {
-  //   const intervalID = setInterval(() => toggleImage(+1), 3000);
-  //   return () => clearInterval(intervalID);
-  // }, []);
+  useEffect(() => {
+    const intervalID = setInterval(() => toggleImage(+1), 4000);
+    return () => clearInterval(intervalID);
+  }, []);
 
   const handleYoutubePlay = () => {
     const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(`official trailer ${title}`)}`;
