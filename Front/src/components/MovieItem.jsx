@@ -54,7 +54,7 @@ const MovieItem = ({ movie, likedYet }) => {
             {title}
           </p>
         </Link>
-        <p className="-z-10" onClick={handleLikeDislike}>
+        <p onClick={handleLikeDislike}>
           {like ? (
             <FaHeart
               size={40}
