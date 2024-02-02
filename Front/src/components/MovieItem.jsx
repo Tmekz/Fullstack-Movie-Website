@@ -50,7 +50,7 @@ const MovieItem = ({ movie, likedYet }) => {
           {title}
         </p>
         <Link to={`/movie/${movie.id}`}>
-          <p className="absolute right-2 top-2">
+          <p className="absolute right-3 top-3">
             <IoMdInformationCircleOutline
               size={30}
             ></IoMdInformationCircleOutline>
@@ -60,12 +60,12 @@ const MovieItem = ({ movie, likedYet }) => {
           {like ? (
             <FaHeart
               size={30}
-              className="absolute left-2 top-2  text-red-600 hover:brightness-150 "
+              className="absolute left-3 top-3  text-red-600 hover:brightness-150 "
             />
           ) : (
             <FaRegHeart
               size={30}
-              className="absolute left-2 top-2 hover:text-red-600"
+              className="absolute left-3 top-3 hover:text-red-600"
             />
           )}
         </p>
