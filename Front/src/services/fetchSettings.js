@@ -1,7 +1,6 @@
 // Key from .env (i add a random key to be able to show on netlify)
 const myKey = import.meta.env.VITE_TMDB_API_KEY;
 const baseURL = import.meta.env.VITE_BASE_URL;
-const ID = undefined;
 const keySearch = undefined;
 
 // endpoints from TMDB API

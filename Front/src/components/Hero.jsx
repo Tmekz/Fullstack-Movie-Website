@@ -44,7 +44,7 @@ const Hero = () => {
 
   // AUTOMATIQUE SLIDER
   useEffect(() => {
-    const intervalID = setInterval(() => toggleImage(+1), 4000);
+    const intervalID = setInterval(() => toggleImage(+1), 10000);
     return () => clearInterval(intervalID);
   }, []);
 
